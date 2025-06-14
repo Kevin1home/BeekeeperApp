@@ -1,0 +1,4 @@
+FROM Nous-Hermes-2-Mistral-7B-DPO.Q4_K_M.gguf
+TEMPLATE """<|im_start|>system\n{{ .System }}<|im_end|>\n<|im_start|>user\n{{ .Prompt }}<|im_end|>\n<|im_start|>assistant"""
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
