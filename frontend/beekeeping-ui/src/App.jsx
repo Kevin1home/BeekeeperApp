@@ -124,9 +124,9 @@ function HomePage() {
           alt="Пчела"
           style={styles.homeImage}
         />
-        <h1 style={styles.header}>Привет пчеловодам!</h1>
+        <h1 style={styles.header}>Hello Beekeeper!</h1>
         <Link to="/app">
-          <button style={styles.button}>Перейти к журналу</button>
+          <button style={styles.button}>Go to journal</button>
         </Link>
       </div>
     </div>
@@ -137,18 +137,18 @@ function AIChat() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
-  // Озвучивание текста
+  // Text-to-speech
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US'; // можно поменять на 'en-US'
-    //window.speechSynthesis.speak(utterance);
+    utterance.lang = 'en-US';
+    window.speechSynthesis.speak(utterance);
   };
 
-  // Запуск распознавания речи
+  // Launching speech recognition
   const startRecognition = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      alert('Ваш браузер не поддерживает распознавание речи.');
+      alert('Your browser does not support speech recognition.');
       return;
     }
 
@@ -164,14 +164,14 @@ function AIChat() {
     };
 
     recognition.onerror = (event) => {
-      console.error('Ошибка распознавания речи:', event.error);
+      console.error('Speech recognition error:', event.error);
     };
 
     recognition.start();
   };
 
 
-  // Отправка сообщения + получение ответа
+  // Sending a message + receiving a response
   const sendMessage = async (rawInput) => {
     const messageText = typeof rawInput === 'string' ? rawInput : input;
     if (typeof messageText !== 'string' || !messageText.trim()) return;
@@ -184,9 +184,9 @@ function AIChat() {
       const response = await fetch(`${apiUrl}/ai?userInput=${encodeURIComponent(messageText)}`);
       const aiText = await response.text();
       setMessages((prev) => [...prev, { text: aiText, sender: 'ai' }]);
-      speak(aiText); // Озвучка ответа
+      speak(aiText); // Voice-over of the response
     } catch (error) {
-      const errorMsg = 'Произошла ошибка при получении ответа от AI';
+      const errorMsg = 'An error occurred while receiving a response from the AI';
       setMessages((prev) => [...prev, { text: errorMsg, sender: 'ai' }]);
       speak(errorMsg);
     }
@@ -195,7 +195,7 @@ function AIChat() {
 
   return (
     <div style={styles.section}>
-      <h2>AI чат</h2>
+      <h2>AI chat</h2>
       <div style={styles.chatContainer}>
         <div style={styles.chatMessages}>
           {messages.map((msg, index) => (
@@ -215,14 +215,14 @@ function AIChat() {
             style={{ ...styles.input, flex: 1 }}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Введите ваш вопрос..."
+            placeholder="Enter your question..."
             onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
           />
           <button style={styles.button} onClick={() => sendMessage()}>
-            Отправить
+            Send
           </button>
           <button style={{ ...styles.button, backgroundColor: '#8884ff' }} onClick={startRecognition}>
-            🎤 Говорить
+            🎤 Speak
           </button>
         </div>
       </div>
@@ -281,19 +281,19 @@ function AppContent() {
   return (
     <div style={styles.container}>
       <nav style={styles.nav}>
-        <Link to="/" style={styles.navLink}>Главная</Link>
-        <Link to="/app" style={styles.navLink}>Журнал</Link>
+        <Link to="/" style={styles.navLink}>Main Page</Link>
+        <Link to="/app" style={styles.navLink}>Journal</Link>
       </nav>
 
-      <h1 style={styles.header}>Пчеловодческий журнал</h1>
+      <h1 style={styles.header}>Beekeeper journal</h1>
 
       <div style={styles.section}>
-        <h2>Ульи</h2>
+        <h2>Hives</h2>
         <button 
           style={styles.button} 
           onClick={() => fetchAll('hive')}
         >
-          🐝 Загрузить все ульи
+          🐝 Show all hives
         </button>
         
         <ul style={styles.list}>
@@ -301,42 +301,42 @@ function AppContent() {
             <li key={h.id} style={styles.listItem}>
               <div>
                 <strong>{h.hiveName}</strong> ({h.hiveType})<br />
-                Материал: {h.hiveMaterial}, Рамочек: {h.framesPerBody}
+                Material: {h.hiveMaterial}, Frames per body: {h.framesPerBody}
               </div>
               <button 
                 style={{...styles.button, backgroundColor: '#ff4444'}} 
                 onClick={() => deleteById('hive', h.id)}
               >
-                Удалить
+                Delete
               </button>
             </li>
           ))}
         </ul>
 
         <div style={styles.formGroup}>
-          <h3>Добавить улей</h3>
+          <h3>Add hive</h3>
           <div style={styles.formGroup}>
             <input 
               style={styles.input} 
-              placeholder="Название улья" 
+              placeholder="Name of hive" 
               value={newHive.hiveName} 
               onChange={e => setNewHive({ ...newHive, hiveName: e.target.value })} 
             />
             <input 
               style={styles.input} 
-              placeholder="Тип улья" 
-              value={newHive.hiveType} 
-              onChange={e => setNewHive({ ...newHive, hiveType: e.target.value })} 
-            />
-            <input 
-              style={styles.input} 
-              placeholder="Материал" 
+              placeholder="Material" 
               value={newHive.hiveMaterial} 
               onChange={e => setNewHive({ ...newHive, hiveMaterial: e.target.value })} 
             />
             <input 
               style={styles.input} 
-              placeholder="Кол-во рамочек" 
+              placeholder="Type of hive" 
+              value={newHive.hiveType} 
+              onChange={e => setNewHive({ ...newHive, hiveType: e.target.value })} 
+            />
+            <input 
+              style={styles.input} 
+              placeholder="Frames per body" 
               value={newHive.framesPerBody} 
               onChange={e => setNewHive({ ...newHive, framesPerBody: e.target.value })} 
             />
@@ -345,15 +345,15 @@ function AppContent() {
             style={styles.button} 
             onClick={() => addItem('hive', newHive)}
           >
-            ➕ Добавить улей
+            ➕ Add hive
           </button>
         </div>
 
         <div style={styles.formGroup}>
-          <h3>Поиск улья по ID</h3>
+          <h3>Find hive by ID</h3>
           <input 
             style={styles.input} 
-            placeholder="ID улья" 
+            placeholder="Hive ID" 
             value={hiveId} 
             onChange={e => setHiveId(e.target.value)} 
           />
@@ -361,26 +361,26 @@ function AppContent() {
             style={styles.button} 
             onClick={() => fetchById('hive', hiveId)}
           >
-            🔍 Найти
+            🔍 Find
           </button>
           {hiveById && (
             <div style={{ marginTop: '10px', padding: '10px', backgroundColor: '#f0fff0', borderRadius: '5px' }}>
-              Найден улей: <strong>{hiveById.hiveName}</strong><br />
-              Тип: {hiveById.hiveType}<br />
-              Материал: {hiveById.hiveMaterial}<br />
-              Рамочек: {hiveById.framesPerBody}
+              Hive found: <strong>{hiveById.hiveName}</strong><br />
+              Type: {hiveById.hiveType}<br />
+              Material: {hiveById.hiveMaterial}<br />
+              Frames: {hiveById.framesPerBody}
             </div>
           )}
         </div>
       </div>
 
       <div style={styles.section}>
-        <h2>Пчелиные семьи</h2>
+        <h2>Bee families</h2>
         <button 
           style={styles.button} 
           onClick={() => fetchAll('beeFamily')}
         >
-          🐝 Загрузить все семьи
+          🐝 Show all bee families
         </button>
         
         <ul style={styles.list}>
@@ -388,36 +388,36 @@ function AppContent() {
             <li key={b.id} style={styles.listItem}>
               <div>
                 <strong>{b.beeFamilyName}</strong> ({b.beeFamilyType})<br />
-                Сила семьи: {b.beeFamilyPower}
+                Power of bee family: {b.beeFamilyPower}
               </div>
               <button 
                 style={{...styles.button, backgroundColor: '#ff4444'}} 
                 onClick={() => deleteById('beeFamily', b.id)}
               >
-                Удалить
+                Delete
               </button>
             </li>
           ))}
         </ul>
 
         <div style={styles.formGroup}>
-          <h3>Добавить пчелиную семью</h3>
+          <h3>Add bee family</h3>
           <div style={styles.formGroup}>
             <input 
               style={styles.input} 
-              placeholder="Название семьи" 
+              placeholder="Name of bee family" 
               value={newBeeFamily.beeFamilyName} 
               onChange={e => setNewBeeFamily({ ...newBeeFamily, beeFamilyName: e.target.value })} 
             />
             <input 
               style={styles.input} 
-              placeholder="Тип семьи" 
+              placeholder="Type of bee family" 
               value={newBeeFamily.beeFamilyType} 
               onChange={e => setNewBeeFamily({ ...newBeeFamily, beeFamilyType: e.target.value })} 
             />
             <input 
               style={styles.input} 
-              placeholder="Сила семьи" 
+              placeholder="Power of bee family" 
               value={newBeeFamily.beeFamilyPower} 
               onChange={e => setNewBeeFamily({ ...newBeeFamily, beeFamilyPower: e.target.value })} 
             />
@@ -426,15 +426,15 @@ function AppContent() {
             style={styles.button} 
             onClick={() => addItem('beeFamily', newBeeFamily)}
           >
-            ➕ Добавить семью
+            ➕ Add bee family
           </button>
         </div>
 
         <div style={styles.formGroup}>
-          <h3>Поиск семьи по ID</h3>
+          <h3>Find bee family by ID</h3>
           <input 
             style={styles.input} 
-            placeholder="ID семьи" 
+            placeholder="Bee family ID" 
             value={beeFamilyId} 
             onChange={e => setBeeFamilyId(e.target.value)} 
           />
@@ -442,13 +442,13 @@ function AppContent() {
             style={styles.button} 
             onClick={() => fetchById('beeFamily', beeFamilyId)}
           >
-            🔍 Найти
+            🔍 Find
           </button>
           {beeFamilyById && (
             <div style={{ marginTop: '10px', padding: '10px', backgroundColor: '#f0fff0', borderRadius: '5px' }}>
-              Найдена семья: <strong>{beeFamilyById.beeFamilyName}</strong><br />
-              Тип: {beeFamilyById.beeFamilyType}<br />
-              Сила: {beeFamilyById.beeFamilyPower}
+              Bee family found: <strong>{beeFamilyById.beeFamilyName}</strong><br />
+              Type: {beeFamilyById.beeFamilyType}<br />
+              Power: {beeFamilyById.beeFamilyPower}
             </div>
           )}
         </div>

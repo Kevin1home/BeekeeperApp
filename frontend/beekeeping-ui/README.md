@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# Beekeeper Journal (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Module: React Application for Managing Hives and Bee Families**  
+*A web-based React app for interacting with the Beekeeper backend API.*
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+This frontend application provides an interactive interface for beekeepers to:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- View, add, and delete hives
+- View, add, and delete bee families
+- Chat with an AI assistant for beekeeping advice and managing of app
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The app communicates with a backend API running at `http://localhost:8080`.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- **Hives Management**
+  - View all hives
+  - Add a new hive
+  - Delete a hive
+  - Search a hive by ID
+- **Bee Families Management**
+  - View all bee families
+  - Add a new bee family
+  - Delete a bee family
+  - Search a bee family by ID
+- **AI Chat**
+  - Send text input to an AI model
+  - Receive AI responses
+  - Text-to-speech voice responses
+  - Speech-to-text input
+- **Responsive Navigation**
+  - Home page
+  - Journal page
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+```bash
+# Install dependencies
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Start the development server
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The app will run at http://localhost:3000.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Navigation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `/` – Home page  
+- `/app` – Beekeeper journal with hives, bee families, and AI chat  
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Example Interactions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Add Hive**
+```
+Hive Name: Sunset Hive
+Material: WOOD
+Type: DADANT
+Frames per Body: 10
+```
+Click "Add hive" → Hive is added and displayed in the list.
 
-### Code Splitting
+- **AI Chat**
+```
+User: How to strengthen a weak bee family?
+AI: To strengthen your weak bee family, ...
+```
+Speech-to-text or manual input works for user messages.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Search Hive by ID**
+```
+Input: 3
+Click "Find" → Hive details displayed if exists
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Project Structure
 
-### Making a Progressive Web App
+- `HomePage` – Displays the welcome screen with a button to go to the journal.  
+- `AppContent` – Main journal page: hives, bee families, AI chat.  
+- `AIChat` – Handles AI chat interactions with text-to-speech and speech recognition.  
+- `App` – Defines routes for HomePage and AppContent.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Requirements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Node.js 18+  
+- NPM 8+  
+- Browser with Web Speech API support for text-to-speech and speech recognition  
+- Backend API running at `http://localhost:8080`  
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## License
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Released under the **MIT License**.
