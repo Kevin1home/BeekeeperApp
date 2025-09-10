@@ -61,57 +61,62 @@ with optional AI assistance for querying or managing these data.
 ## Project Structure
 
 ```
-BeekeeperApp/
-│
-├─ src/main/java/com/beekeeperApp/
-│  ├─ BeekeeperApp.java           # Main Spring Boot entry point
-│  ├─ controller/
-│  │  ├─ HomeController.java
-│  │  ├─ BeeFamilyController.java
-│  │  ├─ HiveController.java
-│  │  └─ AiController.java
-│  ├─ service/
-│  │  ├─ beeFamily/
-│  │  │  ├─ BeeFamilyService.java
-│  │  │  └─ BeeFamilyServiceImpl.java
-│  │  ├─ hive/
-│  │  │  ├─ HiveService.java
-│  │  │  └─ HiveServiceImpl.java
-│  │  └─ ai/
-│  │     ├─ AiService.java
-│  │     └─ AiServiceImpl.java
-│  ├─ repository/
-│  │  ├─ beeFamily/
-│  │  │  ├─ BeeFamilyRepo.java
-│  │  │  ├─ DbBeeFamilyRepo.java
-│  │  │  └─ InMemoryBeeFamilyRepo.java
-│  │  └─ hive/
-│  │     ├─ HiveRepo.java
-│  │     ├─ DbHiveRepo.java
-│  │     └─ InMemoryHiveRepo.java
-│  ├─ model/
-│  │  ├─ beeFamily/
-│  │  │  ├─ BeeFamily.java
-│  │  │  ├─ BeeFamilyType.java
-│  │  │  └─ BeeFamilyPower.java
-│  │  └─ hive/
-│  │     ├─ Hive.java
-│  │     ├─ HiveType.java
-│  │     └─ HiveMaterial.java
-│  └─ exception/
-│     ├─ BeeFamilyAlreadyExistException.java
-│     ├─ BeeFamilyNotFoundException.java
-│     ├─ HiveAlreadyExistException.java
-│     ├─ HiveNotFoundException.java
-│
-├─ src/main/resources/
-│  ├─ application.properties
-│  └─ schema.sql
-│
-├─ .mvn/                        # Maven wrapper files (optional)
-├─ mvnw
-├─ mvnw.cmd
-└─ pom.xml
+backend/
+├── README.md
+├── lombok.config
+├── pom.xml
+└── src/
+    ├── main/
+    │   ├── java/
+    │   │   └── com/
+    │   │       └── beekeeperApp/
+    │   │           ├── BeekeeperApp.java
+    │   │           ├── controller/
+    │   │           │   ├── AiController.java
+    │   │           │   ├── BeeFamilyController.java
+    │   │           │   ├── HiveController.java
+    │   │           │   └── HomeController.java
+    │   │           ├── exception/
+    │   │           │   ├── BeeFamilyAlreadyExistException.java
+    │   │           │   ├── BeeFamilyNotFoundException.java
+    │   │           │   ├── HiveAlreadyExistException.java
+    │   │           │   └── HiveNotFoundException.java
+    │   │           ├── model/
+    │   │           │   ├── beeFamily/
+    │   │           │   │   ├── BeeFamily.java
+    │   │           │   │   ├── BeeFamilyPower.java
+    │   │           │   │   └── BeeFamilyType.java
+    │   │           │   └── hive/
+    │   │           │       ├── Hive.java
+    │   │           │       ├── HiveMaterial.java
+    │   │           │       └── HiveType.java
+    │   │           ├── repository/
+    │   │           │   ├── beeFamily/
+    │   │           │   │   ├── BeeFamilyRepo.java
+    │   │           │   │   ├── DbBeeFamilyRepo.java
+    │   │           │   │   └── InMemoryBeeFamilyRepo.java
+    │   │           │   └── hive/
+    │   │           │       ├── DbHiveRepo.java
+    │   │           │       ├── HiveRepo.java
+    │   │           │       └── InMemoryHiveRepo.java
+    │   │           └── service/
+    │   │               ├── ai/
+    │   │               │   ├── AiService.java
+    │   │               │   └── AiServiceImpl.java
+    │   │               ├── beeFamily/
+    │   │               │   ├── BeeFamilyService.java
+    │   │               │   └── BeeFamilyServiceImpl.java
+    │   │               └── hive/
+    │   │                   ├── HiveService.java
+    │   │                   └── HiveServiceImpl.java
+    │   └── resources/
+    │       ├── application.properties
+    │       └── schema.sql
+    └── test/
+        └── java/
+            └── com/
+                └── beekeeperApp/
+                    └── BeekeeperAppTests.java
 ```
 
 ---
