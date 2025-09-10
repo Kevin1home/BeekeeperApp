@@ -120,7 +120,7 @@ function HomePage() {
     <div style={styles.container}>
       <div style={styles.homeContainer}>
         <img
-          src="https://cdn-icons-png.flaticon.com/512/3069/3069172.png"
+          src="https://cdn-icons-png.flaticon.com/128/809/809052.png"
           alt="Пчела"
           style={styles.homeImage}
         />
@@ -140,8 +140,8 @@ function AIChat() {
   // Озвучивание текста
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'ru-RU'; // можно поменять на 'en-US'
-    window.speechSynthesis.speak(utterance);
+    utterance.lang = 'en-US'; // можно поменять на 'en-US'
+    //window.speechSynthesis.speak(utterance);
   };
 
   // Запуск распознавания речи
@@ -153,7 +153,7 @@ function AIChat() {
     }
 
     const recognition = new SpeechRecognition();
-    recognition.lang = 'ru-RU';
+    recognition.lang = 'en-US';
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
 
