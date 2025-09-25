@@ -69,6 +69,12 @@ The project includes:
 - `App` – Routing for HomePage and AppContent
 - Uses `fetch` to communicate with backend API (`http://localhost:8080`)
 
+#### Screenshots
+<div>
+<img src="frontend/beekeeping-ui/screenshots/Main_Page.png" width="250" /> 
+<img src="frontend/beekeeping-ui/screenshots/Journal.png" width="250" /> 
+</div>
+
 ---
 
 ## Requirements

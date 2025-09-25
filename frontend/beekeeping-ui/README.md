@@ -15,6 +15,12 @@ This frontend application provides an interactive interface for beekeepers to:
 
 The app communicates with a backend API running at `http://localhost:8080`.
 
+#### Screenshots
+<div>
+<img src="screenshots/Main_Page.png" width="250" /> 
+<img src="screenshots/Journal.png" width="250" /> 
+</div>
+
 ---
 
 ## Features
